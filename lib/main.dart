@@ -23,7 +23,7 @@ class _MyAppState extends State<MyApp> {
         backgroundColor: Color.fromRGBO(26, 26, 26, 1),
         appBar: AppBar(
           title: const Text(
-            'LGBT LED App',
+            'RBG LED App',
             style: TextStyle(
               color: Color.fromRGBO(217, 217, 217, 1),
               fontWeight: FontWeight.bold
@@ -58,9 +58,6 @@ class _MyAppState extends State<MyApp> {
             ),
             const SizedBox(height: 48),
             Column(
-              
-              
-
               children: [
                 // Sliders para cada color
                     Slider(
@@ -68,11 +65,10 @@ class _MyAppState extends State<MyApp> {
                       min: 0,
                       max: 255,
                       thumbColor: Colors.red,
-                      
+                      activeColor: Colors.red,
                       onChanged: (value) {
                         setState(() {
                           _controller.color = Color.fromRGBO(value.toInt(), _currentColor.green, _currentColor.blue, 1);
-                          //_currentColor = Color.fromRGBO(value.toInt(), _currentColor.green, _currentColor.blue, 1);
                         });
                       },
                     ),
@@ -80,10 +76,11 @@ class _MyAppState extends State<MyApp> {
                       value: _currentColor.green.toDouble(),
                       min: 0,
                       max: 255,
+                      thumbColor: Colors.green,
+                      activeColor: Colors.green,
                       onChanged: (value) {
                         setState(() {
                           _controller.color = Color.fromRGBO(_currentColor.red, value.toInt(), _currentColor.blue, 1);
-                          //_currentColor = Color.fromRGBO(_currentColor.red, value.toInt(), _currentColor.blue, 1);
                         });
                       },
                     ),
@@ -91,26 +88,14 @@ class _MyAppState extends State<MyApp> {
                       value: _currentColor.blue.toDouble(),
                       min: 0,
                       max: 255,
+                      thumbColor: Colors.blue,
+                      activeColor: Colors.blue,
                       onChanged: (value) {
                         setState(() {
                           _controller.color = Color.fromRGBO(_currentColor.red, _currentColor.green, value.toInt(), 1);
-                          // = Color.fromRGBO(_currentColor.red, _currentColor.green, value.toInt(), 1);
                         });
                       },
                     ),
-                // TextButton(
-                //   onPressed: () => _controller.color = Colors.blue,
-                //   child: Text('BLUE', style: TextStyle(color: Colors.blue)),
-                // ),
-                // TextButton(
-                //   onPressed: () => _controller.color = Colors.green,
-                //   child: Text('GREEN', style: TextStyle(color: Colors.green)),
-                // ),
-                // TextButton(
-                //   onPressed: () => _controller.color = Colors.red,
-                //   child: Text('RED', style: TextStyle(color: Colors.red)),
-                // ),
-                
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
