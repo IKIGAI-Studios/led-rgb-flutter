@@ -36,7 +36,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   flutter_circle_color_picker: ^0.3.0
-  flutter_bluetooth_serial: ^0.4.0
+  flutter_bluetooth_serial: ^0.3.2
+  path_provider: ^2.0.9
 
 dev_dependencies:
   flutter_test:
