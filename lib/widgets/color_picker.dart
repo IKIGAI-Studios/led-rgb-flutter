@@ -1,37 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_circle_color_picker/flutter_circle_color_picker.dart';
 
-void main() => runApp(MyApp());
+class ColorPicker extends StatefulWidget {
+  const ColorPicker();
 
-class MyApp extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  State<ColorPicker> createState() => _ColorPickerState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _ColorPickerState extends State<ColorPicker> {
   Color _currentColor = Colors.blue;
+  Color _previousColor = Colors.black;
   var _switchValue = false;
+
   final _controller = CircleColorPickerController(
     initialColor: Colors.blue,
   );
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Color.fromRGBO(26, 26, 26, 1),
-        appBar: AppBar(
-          title: const Text(
-            'RBG LED App',
-            style: TextStyle(
-              color: Color.fromRGBO(217, 217, 217, 1),
-              fontWeight: FontWeight.bold
-            ), // Aquí puedes cambiar el color de la fuente
-          ),
-          backgroundColor: Color.fromRGBO(26, 26, 26, 1),
-          centerTitle: true,
-        ),
+    return Scaffold(
+        backgroundColor: const Color.fromRGBO(26, 26, 26, 1),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,13 +35,19 @@ class _MyAppState extends State<MyApp> {
             const SizedBox(height: 48),
             Center(
               child: CircleColorPicker(
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   color: Colors.white,
                   fontSize: 20,
                 ),
                 controller: _controller,
                 onChanged: (color) {
-                  setState(() => _currentColor = color);
+                  setState(() => {
+                    _currentColor = color,
+                    // Send color to the device
+
+                    
+                    print(_controller.color)
+                  });
                 },
               ),
             ),
@@ -110,6 +105,8 @@ class _MyAppState extends State<MyApp> {
                       onChanged: (value) {
                         setState(() {
                           _switchValue = value;
+                          _previousColor = _currentColor;
+                          _controller.color = _switchValue ? Colors.black : _previousColor;
                         });
                       },
                     ),
@@ -119,7 +116,6 @@ class _MyAppState extends State<MyApp> {
             ),
           ],
         ),
-      ),
     );
   }
 }
