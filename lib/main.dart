@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:led_rgb_arduino/screens/scan_screen.dart';
 
 import 'screens/bluetooth_off_screen.dart';
 import 'screens/picker_screen.dart';
@@ -47,12 +48,12 @@ class _FlutterBlueAppState extends State<FlutterBlueApp> {
   @override
   Widget build(BuildContext context) {
     Widget screen = _adapterState == BluetoothAdapterState.on
-        ? const PickerScreen()
+        ? const ScanScreen()
         : BluetoothOffScreen(adapterState: _adapterState);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      color: Colors.lightBlue,
+      color: const Color.fromRGBO(26, 26, 26, 1),
       home: screen,
       navigatorObservers: [BluetoothAdapterStateObserver()],
     );

@@ -65,10 +65,16 @@ class _ScanResultTileState extends State<ScanResultTile> {
           Text(
             widget.result.device.platformName,
             overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: Color.fromRGBO(217, 217, 217, 1),
+            ),
           ),
           Text(
             widget.result.device.remoteId.str,
-            style: Theme.of(context).textTheme.bodySmall,
+            style: TextStyle(
+              color: Color.fromRGBO(217, 217, 217, 1),
+              fontSize: 12.0
+            ),
           )
         ],
       );
@@ -81,7 +87,7 @@ class _ScanResultTileState extends State<ScanResultTile> {
     return ElevatedButton(
       child: isConnected ? const Text('OPEN') : const Text('CONNECT'),
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.black,
+        backgroundColor: isConnected ? Colors.green : Colors.blue,
         foregroundColor: Colors.white,
       ),
       onPressed: (widget.result.advertisementData.connectable) ? widget.onTap : null,

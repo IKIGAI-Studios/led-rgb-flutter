@@ -135,6 +135,8 @@ class _PickerScreenState extends State<PickerScreen> {
         .toList();
   }
 
+  
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldMessenger(
@@ -155,9 +157,7 @@ class _PickerScreenState extends State<PickerScreen> {
         ),
         body: RefreshIndicator(
           onRefresh: onRefresh,
-          child: Container(
-            child: ColorPicker()
-          ),
+          child: ColorPicker() 
         ),
         floatingActionButton: buildScanButton(context),
       ),
